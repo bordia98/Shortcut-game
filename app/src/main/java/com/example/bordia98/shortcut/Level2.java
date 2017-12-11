@@ -1,5 +1,6 @@
 package com.example.bordia98.shortcut;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -128,16 +129,16 @@ public class Level2 extends AppCompatActivity {
                 int t=usershortest();
                 if (t!=-1){
                 if(t==dis){
-                    res.setText("You Win"+t+"   "+dis);
+                    res.setText("You Win");
                     nextlevel.setEnabled(true);
                 }
                 else if(t!=dis){
-                    res.setText("You Lose"+t+"  "+dis);
+                    res.setText("You Lose");
                 }
 
                 check.setEnabled(false);
             }else{
-                    res.setText("your option is not a path");
+                    res.setText("This is not a correct route");
                     check.setEnabled(false);
                 }
 
@@ -169,6 +170,18 @@ public class Level2 extends AppCompatActivity {
                 onStart();
             }
         });
+
+        nextlevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                next();
+            }
+        });
+    }
+
+    private void next() {
+        Intent in = new Intent(this,Level3.class);
+        startActivity(in);
     }
 
     private void b5clicked() {
@@ -204,13 +217,13 @@ public class Level2 extends AppCompatActivity {
     }
 
     public int usershortest(){
-        if(b0.isEnabled()==false && b1.isEnabled()==false&&b5.isEnabled()==true)
+        if(b0.isEnabled()==false && b1.isEnabled()==false&&b5.isEnabled()==true && b3.isEnabled()==false &&b2.isEnabled()==false&&b4.isEnabled()==true)
             x=a[0]+a[1]+a[2];
-        else if(b0.isEnabled()==false&&b5.isEnabled()==false&&b1.isEnabled()==false)
+        else if(b0.isEnabled()==false&&b5.isEnabled()==false&&b1.isEnabled()==false && b3.isEnabled()==false&&b2.isEnabled()==false&&b4.isEnabled()==true)
             x=a[1]+a[2]+a[5]+a[7];
-        else if(b0.isEnabled()==false&&b5.isEnabled()==false&&b1.isEnabled()==true)
+        else if(b0.isEnabled()==false&&b5.isEnabled()==false&&b1.isEnabled()==true && b3.isEnabled()==false&&b4.isEnabled()==false&&b2.isEnabled()==true)
             x=a[5]+a[4]+a[3];
-        else if(b0.isEnabled()==false && b2.isEnabled()==false &&b1.isEnabled()==true&&b5.isEnabled()==true)
+        else if(b0.isEnabled()==false && b2.isEnabled()==false &&b1.isEnabled()==true&&b3.isEnabled()==false&&b5.isEnabled()==true && b4.isEnabled()==true)
             x=a[6]+a[2];
         else
             return  -1;

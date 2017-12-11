@@ -4,10 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@drawable/bg2"
+    android:layout_height="match_parent"
     tools:context="com.example.bordia98.shortcut.Level1">
-
 
     <LinearLayout
         android:layout_width="120dp"
@@ -16,6 +15,26 @@
         android:background="#000000"
         android:layout_marginLeft="50dp"
         android:id="@+id/view2"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="142dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="265dp"
+        android:background="#000000"
+        android:layout_marginLeft="55dp"
+        android:id="@+id/view10"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="123dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="380dp"
+        android:background="#000000"
+        android:layout_marginLeft="70dp"
+        android:id="@+id/view21"
         android:orientation="horizontal">
 
     </LinearLayout>
@@ -107,12 +126,32 @@
         android:layout_marginLeft="50dp">
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="2dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="220dp"
+        android:orientation="vertical"
+        android:background="#000000"
+        android:layout_marginLeft="190dp"
+        android:id="@+id/linearLayout">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="2dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="265dp"
+        android:orientation="vertical"
+        android:background="#000000"
+        android:layout_marginLeft="195dp"
+        android:id="@+id/lidfdnearLayout">
+
+    </LinearLayout>
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:text="Level     1"
+        android:text="Level     3"
         android:textSize="30dp"
         android:textColor="#000"
         android:textStyle="bold"
@@ -288,6 +327,29 @@
         android:layout_alignEnd="@+id/nextlevel"
         android:textAlignment="center"
         android:textColor="#00ffff"/>
+
+    <TextView
+        android:id="@+id/t7"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/view10"
+        android:layout_alignEnd="@+id/view2"
+        android:text="0"
+        android:textColor="#000"
+        android:textSize="15dp"
+        android:textAlignment="center"
+        android:layout_alignLeft="@+id/view2"/>
+
+    <TextView
+        android:id="@+id/t8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="#000"
+        android:textSize="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_alignBottom="@+id/linearLayout"
+        android:layout_alignEnd="@+id/view21" />
 
 
 </RelativeLayout>

@@ -8,7 +8,6 @@
     android:background="@drawable/bg2"
     tools:context="com.example.bordia98.shortcut.Level1">
 
-
     <LinearLayout
         android:layout_width="120dp"
         android:layout_height="2dp"
@@ -16,6 +15,36 @@
         android:background="#000000"
         android:layout_marginLeft="50dp"
         android:id="@+id/view2"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="125dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="270dp"
+        android:background="#000000"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/vifew2"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="130dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="380dp"
+        android:background="#000000"
+        android:layout_marginLeft="63dp"
+        android:id="@+id/fgfvifew2"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="105dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="270dp"
+        android:background="#000000"
+        android:layout_marginLeft="195dp"
+        android:id="@+id/vbifew2"
         android:orientation="horizontal">
 
     </LinearLayout>
@@ -95,7 +124,38 @@
         android:layout_marginTop="290dp"
         android:background="#000000"
         android:orientation="vertical"
-        android:layout_marginLeft="300dp">
+        android:layout_marginLeft="300dp"
+        android:id="@+id/linearLayout2">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="2dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="270dp"
+        android:background="#000000"
+        android:orientation="vertical"
+        android:layout_marginLeft="195dp"
+        >
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="2dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="270dp"
+        android:background="#000000"
+        android:orientation="vertical"
+        android:layout_marginLeft="185dp"
+        android:id="@+id/linearLayout3">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="2dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="348dp"
+        android:background="#000000"
+        android:orientation="vertical"
+        android:layout_marginLeft="190dp"
+        >
 
     </LinearLayout>
     <LinearLayout
@@ -107,12 +167,13 @@
         android:layout_marginLeft="50dp">
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:text="Level     1"
+        android:text="Level     4"
         android:textSize="30dp"
         android:textColor="#000"
         android:textStyle="bold"
@@ -288,6 +349,45 @@
         android:layout_alignEnd="@+id/nextlevel"
         android:textAlignment="center"
         android:textColor="#00ffff"/>
+
+    <Button
+        android:id="@+id/b6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="F"
+        android:layout_above="@+id/b3"
+        android:layout_alignStart="@+id/b4" />
+
+    <TextView
+        android:id="@+id/t7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="#000"
+        android:textSize="15dp"
+        android:layout_alignBottom="@+id/vifew2"
+        android:layout_toEndOf="@+id/t8" />
+
+    <TextView
+        android:id="@+id/t8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="#000"
+        android:textSize="15dp"
+        android:layout_alignTop="@+id/b5"
+        android:layout_toStartOf="@+id/restart" />
+
+    <TextView
+        android:id="@+id/t9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="#000"
+        android:textSize="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_alignTop="@+id/t7"
+        android:layout_toEndOf="@+id/textView" />
 
 
 </RelativeLayout>

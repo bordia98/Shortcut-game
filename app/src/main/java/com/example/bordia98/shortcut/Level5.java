@@ -10,14 +10,15 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class Level1 extends AppCompatActivity {
+public class Level5 extends AppCompatActivity {
     Button b0;
     Button b1;
     Button b2;
     Button b3;
     Button b4;
     Button b5;
-    int x;
+    Button b6;
+    int x,y;
     int dis=0;
     int a[];
     int[][] g;
@@ -27,8 +28,8 @@ public class Level1 extends AppCompatActivity {
         super.onStart();
         Random random=new Random();
         x=0;
-        a=new int[6];
-        for(int i=0;i<6;i++){
+        a=new int[10];
+        for(int i=0;i<10;i++){
             a[i]=random.nextInt(20);
         }
         TextView tv1=(TextView)findViewById(R.id.t1);
@@ -37,16 +38,24 @@ public class Level1 extends AppCompatActivity {
         TextView tv4=(TextView)findViewById(R.id.t4);
         TextView tv5=(TextView)findViewById(R.id.t5);
         TextView tv6=(TextView)findViewById(R.id.t6);
+        TextView tv7=(TextView)findViewById(R.id.t7);
+        TextView tv8=(TextView)findViewById(R.id.t8);
+        TextView tv9=(TextView)findViewById(R.id.t9);
+        TextView tv10=(TextView)findViewById(R.id.t10);
         tv1.setText(a[0]+"");
         tv2.setText(a[1]+"");
         tv3.setText(a[2]+"");
         tv4.setText(a[3]+"");
         tv5.setText(a[4]+"");
         tv6.setText(a[5]+"");
+        tv7.setText(a[6]+"");
+        tv8.setText(a[7]+"");
+        tv9.setText(a[8]+"");
+        tv10.setText(a[9]+"");
 
-        g=new int[6][6];
-        for(int i=0;i<6;i++)
-            for(int j=0;j<6;j++)
+        g=new int[7][7];
+        for(int i=0;i<7;i++)
+            for(int j=0;j<7;j++)
                 g[i][j]=-1;
         g[0][1]=g[1][0]=a[0];
         g[1][2]=g[2][1]=a[1];
@@ -54,25 +63,29 @@ public class Level1 extends AppCompatActivity {
         g[3][4]=g[4][3]=a[3];
         g[4][5]=g[5][4]=a[4];
         g[0][5]=g[5][0]=a[5];
-
-        DijsktraAlgorithm djk=new DijsktraAlgorithm(g,6);
+        g[0][6]=g[6][0]=a[6];
+        g[5][6]=g[6][5]=a[7];
+        g[6][2]=g[2][6]=a[8];
+        g[6][1]=g[1][6]=a[9];
+        DijsktraAlgorithm djk=new DijsktraAlgorithm(g,7);
         dis=djk.dijkstra(g,0,3);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level1);
+        setContentView(R.layout.activity_level5);
         onStart();
 
 
 
-         b0=(Button)findViewById(R.id.b0);
-         b1=(Button)findViewById(R.id.b1);
-         b2=(Button)findViewById(R.id.b2);
-         b3=(Button)findViewById(R.id.b3);
-         b4=(Button)findViewById(R.id.b4);
-         b5=(Button)findViewById(R.id.b5);
+        b0=(Button)findViewById(R.id.b0);
+        b1=(Button)findViewById(R.id.b1);
+        b2=(Button)findViewById(R.id.b2);
+        b3=(Button)findViewById(R.id.b3);
+        b4=(Button)findViewById(R.id.b4);
+        b5=(Button)findViewById(R.id.b5);
+        b6=(Button)findViewById(R.id.b6);
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +123,12 @@ public class Level1 extends AppCompatActivity {
                 b5clicked();
             }
         });
-
+        b6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                b6clicked();
+            }
+        });
         final Button nextlevel=(Button)findViewById(R.id.nextlevel);
         final Button check=(Button)findViewById(R.id.check);
         nextlevel.setEnabled(false);
@@ -120,19 +138,24 @@ public class Level1 extends AppCompatActivity {
                 TextView res = (TextView) findViewById(R.id.result);
 
                 int t=usershortest();
-                if (t!=-1) {
-                    if (t == dis) {
+                res.setText(t+"");
+                if (t!=-1){
+                    if(t==dis){
                         res.setText("You Win");
                         nextlevel.setEnabled(true);
-                    } else if (t != dis) {
+                    }
+                    else if(t!=dis){
                         res.setText("You Lose");
                     }
+
+                    check.setEnabled(false);
+                }else{
+                    //res.setText("This not a correct route");
+                    check.setEnabled(false);
                 }
-                else{
-                    res.setText("This is not a correct route");
-                }
-                check.setEnabled(false);
+
             }
+
         });
 
         Button restart = (Button)findViewById(R.id.restart);
@@ -151,6 +174,8 @@ public class Level1 extends AppCompatActivity {
                 b4.setEnabled(true);
                 b5.setBackgroundResource(android.R.drawable.btn_default);
                 b5.setEnabled(true);
+                b6.setBackgroundResource(android.R.drawable.btn_default);
+                b6.setEnabled(true);
                 check.setEnabled(true);
                 nextlevel.setEnabled(false);
                 TextView res =(TextView)findViewById(R.id.result);
@@ -159,19 +184,22 @@ public class Level1 extends AppCompatActivity {
                 onStart();
             }
         });
-
         nextlevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 next();
             }
         });
-
     }
 
     private void next() {
-        Intent in = new Intent(this,Level2.class);
-        startActivity(in);
+        Intent i = new Intent(this,Level5.class);
+        startActivity(i);
+    }
+
+    private void b6clicked() {
+        b6.setBackgroundColor(Color.RED);
+        b6.setEnabled(false);
     }
 
     private void b5clicked() {
@@ -187,6 +215,7 @@ public class Level1 extends AppCompatActivity {
     private void b3clicked() {
         b3.setBackgroundColor(Color.RED);
         b3.setEnabled(false);
+
     }
 
     private void b2clicked() {
@@ -197,6 +226,7 @@ public class Level1 extends AppCompatActivity {
     private void b1clicked() {
         b1.setBackgroundColor(Color.RED);
         b1.setEnabled(false);
+
     }
 
     private void b0clicked() {
@@ -205,12 +235,49 @@ public class Level1 extends AppCompatActivity {
     }
 
     public int usershortest(){
-        if(b0.isEnabled()==false && b1.isEnabled()==false &&b5.isEnabled()==true&&b4.isEnabled()==true&&b2.isEnabled()==false&&b3.isEnabled()==false)
-            x+=a[0]+a[1]+a[2];
-        else if(b0.isEnabled()==false && b1.isEnabled()==true &&b5.isEnabled()==false&&b4.isEnabled()==false&&b2.isEnabled()==true&&b3.isEnabled()==false)
-            x+=a[3]+a[4]+a[5];
-        else
-            x=-1;
-        return x;
+        if(b0.isEnabled()==false &&b1.isEnabled()==false && b2.isEnabled()==false&&b3.isEnabled()==false && b4.isEnabled()==true &&b5.isEnabled()==true&&b6.isEnabled()==true)
+        {x=a[0]+a[1]+a[2];
+        return x;}
+
+        if(b0.isEnabled()==false &&b1.isEnabled()==true && b2.isEnabled()==true&&b3.isEnabled()==false && b4.isEnabled()==false &&b5.isEnabled()==false&&b6.isEnabled()==true)
+        {x=a[3]+a[4]+a[5];
+        return x;}
+
+        if(b0.isEnabled()==false &&b1.isEnabled()==true && b2.isEnabled()==false&&b3.isEnabled()==false && b4.isEnabled()==true &&b5.isEnabled()==true&&b6.isEnabled()==false) {
+            x = a[6] + a[8] + a[2];
+            return x;
+        }
+        if(b0.isEnabled()==false &&b1.isEnabled()==false && b2.isEnabled()==false&&b3.isEnabled()==false && b4.isEnabled()==true &&b5.isEnabled()==true&&b6.isEnabled()==false)
+        {
+            y=a[0]+a[9]+a[8]+a[2];
+            x=a[6]+a[9]+a[1]+a[2];
+            if(y<x)
+                x=y;
+            return x;
+        }
+        if(b0.isEnabled()==false &&b1.isEnabled()==true && b2.isEnabled()==false&&b3.isEnabled()==false && b4.isEnabled()==true &&b5.isEnabled()==false&&b6.isEnabled()==false)
+        {
+            x=a[5]+a[7]+a[8]+a[2];
+            return x;
+        }
+        if(b0.isEnabled()==false &&b1.isEnabled()==false && b2.isEnabled()==false&&b3.isEnabled()==false && b4.isEnabled()==true &&b5.isEnabled()==false&&b6.isEnabled()==false) {
+            x = a[5] + a[7] + a[9] + a[1] + a[2];
+            return x;
+        }
+        if(b0.isEnabled()==false &&b1.isEnabled()==true && b2.isEnabled()==true&&b3.isEnabled()==false && b4.isEnabled()==false &&b5.isEnabled()==false&&b6.isEnabled()==false) {
+            x = a[6] + a[7] + a[4] + a[3];
+            return x;
+        }
+        if(b0.isEnabled()==false &&b1.isEnabled()==false && b2.isEnabled()==true&&b3.isEnabled()==false && b4.isEnabled()==false &&b5.isEnabled()==false&&b6.isEnabled()==false) {
+            x = a[0] + a[9] + a[7] + a[4] + a[3];
+            return x;
+        }
+        if(b0.isEnabled()==false &&b1.isEnabled()==false && b2.isEnabled()==false&&b3.isEnabled()==false&& b4.isEnabled()==false &&b5.isEnabled()==false&&b6.isEnabled()==false)
+        {
+            x=a[0]+a[1]+a[8]+a[7]+a[4]+a[3];
+            return x;
+        }
+        return -1;
     }
+
 }
