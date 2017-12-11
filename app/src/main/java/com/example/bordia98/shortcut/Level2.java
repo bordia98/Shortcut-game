@@ -2,6 +2,7 @@ package com.example.bordia98.shortcut;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,7 @@ public class Level2 extends AppCompatActivity {
     int dis=0;
     int a[];
     int[][] g;
-
+    CountDownTimer co;
     @Override
     protected void onStart() {
         super.onStart();
@@ -64,6 +65,20 @@ public class Level2 extends AppCompatActivity {
 
         DijsktraAlgorithm djk=new DijsktraAlgorithm(g,6);
         dis=djk.dijkstra(g,0,3);
+        final TextView tf = (TextView)findViewById(R.id.textView4);
+
+        co = new CountDownTimer(15000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tf.setText(millisUntilFinished/1000 +":00");
+            }
+
+            @Override
+            public void onFinish() {
+                tf.setText("0:00");
+                callcheck();
+            }
+        }.start();
     }
 
     @Override
@@ -124,24 +139,7 @@ public class Level2 extends AppCompatActivity {
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView res = (TextView) findViewById(R.id.result);
-
-                int t=usershortest();
-                if (t!=-1){
-                if(t==dis){
-                    res.setText("You Win");
-                    nextlevel.setEnabled(true);
-                }
-                else if(t!=dis){
-                    res.setText("You Lose");
-                }
-
-                check.setEnabled(false);
-            }else{
-                    res.setText("This is not a correct route");
-                    check.setEnabled(false);
-                }
-
+                callcheck();
             }
 
         });
@@ -179,6 +177,28 @@ public class Level2 extends AppCompatActivity {
         });
     }
 
+    private void callcheck() {
+        TextView res = (TextView) findViewById(R.id.result);
+        Button nextlevel = (Button)findViewById(R.id.nextlevel);
+        Button check = (Button)findViewById(R.id.check);
+        int t=usershortest();
+        if (t!=-1) {
+            if (t == dis) {
+                res.setText("You Win");
+                nextlevel.setEnabled(true);
+            } else if (t != dis) {
+                res.setText("You Lose");
+            }
+        }
+        else{
+            res.setText("This is not a correct route");
+        }
+        check.setEnabled(false);
+        if(co!=null){
+            co.cancel();
+            co=null;
+        }
+    }
     private void next() {
         Intent in = new Intent(this,Level3.class);
         startActivity(in);

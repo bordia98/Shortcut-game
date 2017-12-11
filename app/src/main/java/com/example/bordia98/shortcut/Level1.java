@@ -2,6 +2,7 @@ package com.example.bordia98.shortcut;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,7 @@ public class Level1 extends AppCompatActivity {
     int dis=0;
     int a[];
     int[][] g;
-
+    CountDownTimer co;
     @Override
     protected void onStart() {
         super.onStart();
@@ -57,6 +58,21 @@ public class Level1 extends AppCompatActivity {
 
         DijsktraAlgorithm djk=new DijsktraAlgorithm(g,6);
         dis=djk.dijkstra(g,0,3);
+
+        final TextView tf = (TextView)findViewById(R.id.textView4);
+
+        co = new CountDownTimer(15000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tf.setText(millisUntilFinished/1000 +":00");
+            }
+
+            @Override
+            public void onFinish() {
+                tf.setText("0:00");
+                callcheck();
+            }
+        }.start();
     }
 
     @Override
@@ -66,45 +82,44 @@ public class Level1 extends AppCompatActivity {
         onStart();
 
 
-
          b0=(Button)findViewById(R.id.b0);
          b1=(Button)findViewById(R.id.b1);
          b2=(Button)findViewById(R.id.b2);
          b3=(Button)findViewById(R.id.b3);
          b4=(Button)findViewById(R.id.b4);
          b5=(Button)findViewById(R.id.b5);
-        b0.setOnClickListener(new View.OnClickListener() {
+         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b0clicked();
             }
         });
 
-        b1.setOnClickListener(new View.OnClickListener() {
+         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b1clicked();
             }
         });
-        b2.setOnClickListener(new View.OnClickListener() {
+         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b2clicked();
             }
         });
-        b3.setOnClickListener(new View.OnClickListener() {
+         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b3clicked();
             }
         });
-        b4.setOnClickListener(new View.OnClickListener() {
+         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b4clicked();
             }
         });
-        b5.setOnClickListener(new View.OnClickListener() {
+         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b5clicked();
@@ -117,21 +132,7 @@ public class Level1 extends AppCompatActivity {
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView res = (TextView) findViewById(R.id.result);
-
-                int t=usershortest();
-                if (t!=-1) {
-                    if (t == dis) {
-                        res.setText("You Win");
-                        nextlevel.setEnabled(true);
-                    } else if (t != dis) {
-                        res.setText("You Lose");
-                    }
-                }
-                else{
-                    res.setText("This is not a correct route");
-                }
-                check.setEnabled(false);
+                callcheck();
             }
         });
 
@@ -167,6 +168,29 @@ public class Level1 extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void callcheck() {
+        TextView res = (TextView) findViewById(R.id.result);
+        Button nextlevel = (Button)findViewById(R.id.nextlevel);
+        Button check = (Button)findViewById(R.id.check);
+        int t=usershortest();
+        if (t!=-1) {
+            if (t == dis) {
+                res.setText("You Win");
+                nextlevel.setEnabled(true);
+            } else if (t != dis) {
+                res.setText("You Lose");
+            }
+        }
+        else{
+            res.setText("This is not a correct route");
+        }
+        check.setEnabled(false);
+        if(co!=null){
+            co.cancel();
+            co=null;
+        }
     }
 
     private void next() {

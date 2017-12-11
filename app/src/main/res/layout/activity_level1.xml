@@ -289,5 +289,16 @@
         android:textAlignment="center"
         android:textColor="#00ffff"/>
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignEnd="@+id/result"
+        android:text="0:00"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>
