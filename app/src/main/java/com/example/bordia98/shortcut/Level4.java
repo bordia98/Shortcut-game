@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,56 +22,46 @@ public class Level4 extends AppCompatActivity {
     Button b5;
     Button b6;
     int x;
+    TextView tf;
+    long actualtimeremaining;
+    String timeremaining;
     int dis=0;
     int a[];
     int[][] g;
     CountDownTimer co;
+
     @Override
-    protected void onStart() {
-        super.onStart();
-        Random random=new Random();
-        x=0;
-        a=new int[9];
-        for(int i=0;i<9;i++){
-            a[i]=random.nextInt(30);
+    protected void onResume() {
+        super.onResume();
+        if (co!=null)
+            co.cancel();
+        starttimer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(co!=null){
+            co.cancel();
+            timeremaining=tf.getText().toString();
+            int val1 = (int)(timeremaining.charAt(0)) - 48;
+            int val2 =(int)timeremaining.charAt(1) - 48;
+            if(val2>=0 &&val2<=9){
+                int no = val1*10 + val2;
+                actualtimeremaining=no*1000;
+            }
+            else{
+                actualtimeremaining=val1*1000;
+            }
+
+            Log.d("x",actualtimeremaining+"");
         }
-        TextView tv1=(TextView)findViewById(R.id.t1);
-        TextView tv2=(TextView)findViewById(R.id.t2);
-        TextView tv3=(TextView)findViewById(R.id.t3);
-        TextView tv4=(TextView)findViewById(R.id.t4);
-        TextView tv5=(TextView)findViewById(R.id.t5);
-        TextView tv6=(TextView)findViewById(R.id.t6);
-        TextView tv7=(TextView)findViewById(R.id.t7);
-        TextView tv8=(TextView)findViewById(R.id.t8);
-        TextView tv9=(TextView)findViewById(R.id.t9);
-        tv1.setText(a[0]+"");
-        tv2.setText(a[1]+"");
-        tv3.setText(a[2]+"");
-        tv4.setText(a[3]+"");
-        tv5.setText(a[4]+"");
-        tv6.setText(a[5]+"");
-        tv7.setText(a[6]+"");
-        tv8.setText(a[7]+"");
-        tv9.setText(a[8]+"");
-        g=new int[7][7];
-        for(int i=0;i<7;i++)
-            for(int j=0;j<7;j++)
-                g[i][j]=-1;
-        g[0][1]=g[1][0]=a[0];
-        g[1][2]=g[2][1]=a[1];
-        g[2][3]=g[3][2]=a[2];
-        g[3][4]=g[4][3]=a[3];
-        g[4][5]=g[5][4]=a[4];
-        g[0][5]=g[5][0]=a[5];
-        g[0][6]=g[6][0]=a[6];
-        g[5][6]=g[6][5]=a[7];
-        g[6][2]=g[2][6]=a[8];
+    }
 
-        DijsktraAlgorithm djk=new DijsktraAlgorithm(g,7);
-        dis=djk.dijkstra(g,0,3);
-        final TextView tf = (TextView)findViewById(R.id.textView4);
+    private void starttimer() {
 
-         co = new CountDownTimer(15000,1000) {
+        long millisInFuture = actualtimeremaining;
+        co = new CountDownTimer(millisInFuture,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 tf.setText(millisUntilFinished/1000 +":00");
@@ -79,6 +70,7 @@ public class Level4 extends AppCompatActivity {
             @Override
             public void onFinish() {
                 tf.setText("0:00");
+                actualtimeremaining=0;
                 callcheck();
             }
         }.start();
@@ -88,7 +80,8 @@ public class Level4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level4);
-        onStart();
+        tf=(TextView)findViewById(R.id.textView4);
+        dodijsktras();
 
 
 
@@ -177,15 +170,61 @@ public class Level4 extends AppCompatActivity {
                 TextView res =(TextView)findViewById(R.id.result);
                 res.setText("");
                 x=0;
-                onStart();
+                dodijsktras();
+                actualtimeremaining=15000;
+                starttimer();
             }
         });
+        actualtimeremaining=15000;
         nextlevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 next();
             }
         });
+        starttimer();
+    }
+
+    private void dodijsktras() { Random random=new Random();
+        x=0;
+        a=new int[9];
+        for(int i=0;i<9;i++){
+            a[i]=random.nextInt(30);
+        }
+        TextView tv1=(TextView)findViewById(R.id.t1);
+        TextView tv2=(TextView)findViewById(R.id.t2);
+        TextView tv3=(TextView)findViewById(R.id.t3);
+        TextView tv4=(TextView)findViewById(R.id.t4);
+        TextView tv5=(TextView)findViewById(R.id.t5);
+        TextView tv6=(TextView)findViewById(R.id.t6);
+        TextView tv7=(TextView)findViewById(R.id.t7);
+        TextView tv8=(TextView)findViewById(R.id.t8);
+        TextView tv9=(TextView)findViewById(R.id.t9);
+        tv1.setText(a[0]+"");
+        tv2.setText(a[1]+"");
+        tv3.setText(a[2]+"");
+        tv4.setText(a[3]+"");
+        tv5.setText(a[4]+"");
+        tv6.setText(a[5]+"");
+        tv7.setText(a[6]+"");
+        tv8.setText(a[7]+"");
+        tv9.setText(a[8]+"");
+        g=new int[7][7];
+        for(int i=0;i<7;i++)
+            for(int j=0;j<7;j++)
+                g[i][j]=-1;
+        g[0][1]=g[1][0]=a[0];
+        g[1][2]=g[2][1]=a[1];
+        g[2][3]=g[3][2]=a[2];
+        g[3][4]=g[4][3]=a[3];
+        g[4][5]=g[5][4]=a[4];
+        g[0][5]=g[5][0]=a[5];
+        g[0][6]=g[6][0]=a[6];
+        g[5][6]=g[6][5]=a[7];
+        g[6][2]=g[2][6]=a[8];
+
+        DijsktraAlgorithm djk=new DijsktraAlgorithm(g,7);
+        dis=djk.dijkstra(g,0,3);
     }
 
     private void callcheck() {
