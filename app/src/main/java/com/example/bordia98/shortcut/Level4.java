@@ -37,10 +37,16 @@ public class Level4 extends AppCompatActivity {
             co.cancel();
         starttimer();
     }
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getApplicationContext().startService(new Intent(this,bglevelsservice.class));
+    }
     @Override
     protected void onPause() {
         super.onPause();
+        getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
+
         if(co!=null){
             co.cancel();
             timeremaining=tf.getText().toString();
@@ -56,7 +62,9 @@ public class Level4 extends AppCompatActivity {
 
             Log.d("x",actualtimeremaining+"");
         }
+
     }
+
 
     private void starttimer() {
 
@@ -249,6 +257,7 @@ public class Level4 extends AppCompatActivity {
             co=null;
         }
     }
+
     private void next() {
         Intent i = new Intent(this,Level5.class);
         startActivity(i);

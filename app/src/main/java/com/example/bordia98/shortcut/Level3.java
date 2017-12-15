@@ -29,7 +29,6 @@ public class Level3 extends AppCompatActivity {
     long actualtimeremaining;
     String timeremaining;
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -37,10 +36,16 @@ public class Level3 extends AppCompatActivity {
             co.cancel();
         starttimer();
     }
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getApplicationContext().startService(new Intent(this,bglevelsservice.class));
+    }
     @Override
     protected void onPause() {
         super.onPause();
+        getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
+
         if(co!=null){
             co.cancel();
             timeremaining=tf.getText().toString();
@@ -57,8 +62,6 @@ public class Level3 extends AppCompatActivity {
             Log.d("x",actualtimeremaining+"");
         }
     }
-
-
 
 
     @Override
@@ -235,6 +238,7 @@ public class Level3 extends AppCompatActivity {
         b0.setBackgroundColor(Color.RED);
         b0.setEnabled(false);
     }
+
     private void starttimer() {
 
         long millisInFuture = actualtimeremaining;
@@ -252,6 +256,7 @@ public class Level3 extends AppCompatActivity {
             }
         }.start();
     }
+
     private void callcheck() {
         TextView res = (TextView) findViewById(R.id.result);
         Button nextlevel = (Button)findViewById(R.id.nextlevel);
@@ -274,6 +279,7 @@ public class Level3 extends AppCompatActivity {
             co=null;
         }
     }
+
     public int usershortest(){
         if(b0.isEnabled()==false && b1.isEnabled()==false&&b5.isEnabled()==true && b3.isEnabled()==false &&b2.isEnabled()==false&&b4.isEnabled()==true)
             x=a[0]+a[1]+a[2];
@@ -287,5 +293,4 @@ public class Level3 extends AppCompatActivity {
             return  -1;
         return x;
     }
-
 }

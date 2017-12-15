@@ -12,7 +12,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Intent i = new Intent(this,bgmusicservice.class);
+        startService(i);
         Button level2 = (Button)findViewById(R.id.level2);
         Button level1 = (Button)findViewById(R.id.level1);
         Button level3 = (Button)findViewById(R.id.level3);
@@ -76,5 +77,29 @@ public class MainActivity extends AppCompatActivity {
     private void openlevel1() {
         Intent i = new Intent(this,Level1.class);
         startActivity(i);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getApplicationContext().stopService(new Intent(this,bgmusicservice.class));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        getApplicationContext().stopService(new Intent(this,bgmusicservice.class));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getApplicationContext().startService(new Intent(this,bgmusicservice.class));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        getApplicationContext().stopService(new Intent(this,bgmusicservice.class));
     }
 }

@@ -28,6 +28,7 @@ public class Level5 extends AppCompatActivity {
     int a[];
     int[][] g;
     CountDownTimer co;
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -41,6 +42,7 @@ public class Level5 extends AppCompatActivity {
         super.onPause();
         if(co!=null){
             co.cancel();
+            getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
             timeremaining=tf.getText().toString();
             int val1 = (int)(timeremaining.charAt(0)) - 48;
             int val2 =(int)timeremaining.charAt(1) - 48;
@@ -95,6 +97,11 @@ public class Level5 extends AppCompatActivity {
             co.cancel();
             co=null;
         }
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getApplicationContext().startService(new Intent(this,bglevelsservice.class));
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -334,5 +341,4 @@ public class Level5 extends AppCompatActivity {
         }
         return -1;
     }
-
 }

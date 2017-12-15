@@ -54,6 +54,14 @@ public class Level1 extends AppCompatActivity {
 
             Log.d("x",actualtimeremaining+"");
         }
+        getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getApplicationContext().startService(new Intent(this,bglevelsservice.class));
     }
 
     @Override

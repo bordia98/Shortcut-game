@@ -100,7 +100,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="2dp"
-        android:layout_height="55dp"
+        android:layout_height="60dp"
         android:layout_marginTop="200dp"
         android:background="#000000"
         android:layout_marginLeft="50dp"
@@ -170,8 +170,8 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="2dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="400dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="390dp"
         android:orientation="vertical"
         android:background="#000000"
         android:layout_marginLeft="50dp">
@@ -327,24 +327,25 @@
         android:id="@+id/check"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:layout_alignEnd="@+id/t1"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/t5"
         android:text="Check" />
     <Button
         android:id="@+id/nextlevel"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Nextlevel"
+        android:text="Home"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp" />
+
     <Button
         android:id="@+id/restart"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Restart"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_centerHorizontal="true"
+        android:text="Restart" />
 
     <TextView
         android:id="@+id/result"
@@ -363,8 +364,8 @@
         android:id="@+id/b6"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignEnd="@+id/restart"
-        android:layout_below="@+id/b2"
+        android:layout_above="@+id/b3"
+        android:layout_centerHorizontal="true"
         android:text="F" />
 
     <TextView
