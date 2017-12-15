@@ -264,39 +264,37 @@ public class Level4 extends AppCompatActivity {
     }
 
     private void b6clicked() {
-        b6.setBackgroundColor(Color.RED);
+        b6.setBackgroundColor(Color.rgb(178,34,34));
         b6.setEnabled(false);
     }
 
     private void b5clicked() {
-        b5.setBackgroundColor(Color.RED);
+        b5.setBackgroundColor(Color.rgb(178,34,34));
         b5.setEnabled(false);
     }
 
     private void b4clicked() {
-        b4.setBackgroundColor(Color.RED);
+        b4.setBackgroundColor(Color.rgb(178,34,34));
         b4.setEnabled(false);
     }
 
     private void b3clicked() {
-        b3.setBackgroundColor(Color.RED);
+        b3.setBackgroundColor(Color.rgb(178,34,34));
         b3.setEnabled(false);
-
     }
 
     private void b2clicked() {
-        b2.setBackgroundColor(Color.RED);
+        b2.setBackgroundColor(Color.rgb(178,34,34));
         b2.setEnabled(false);
     }
 
     private void b1clicked() {
-        b1.setBackgroundColor(Color.RED);
+        b1.setBackgroundColor(Color.rgb(178,34,34));
         b1.setEnabled(false);
-
     }
 
     private void b0clicked() {
-        b0.setBackgroundColor(Color.RED);
+        b0.setBackgroundColor(Color.rgb(178,34,34));
         b0.setEnabled(false);
     }
 

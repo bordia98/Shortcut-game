@@ -287,7 +287,8 @@
         android:textSize="20dp"
         android:layout_alignEnd="@+id/nextlevel"
         android:textAlignment="center"
-        android:textColor="#00ffff"/>
+        android:textColor="#800000"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textView4"
