@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class Level4 extends AppCompatActivity {
-
+    String soundvalue;
     Button b0;
     Button b1;
     Button b2;
@@ -40,13 +40,16 @@ public class Level4 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        getApplicationContext().startService(new Intent(this,bglevelsservice.class));
+        if (soundvalue.equals("yes")) {
+            getApplicationContext().startService(new Intent(this, bglevelsservice.class));
+        }
     }
     @Override
     protected void onPause() {
         super.onPause();
-        getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
-
+        if(soundvalue.equals("yes")) {
+            getApplicationContext().stopService(new Intent(this, bglevelsservice.class));
+        }
         if(co!=null){
             co.cancel();
             timeremaining=tf.getText().toString();
@@ -90,9 +93,7 @@ public class Level4 extends AppCompatActivity {
         setContentView(R.layout.activity_level4);
         tf=(TextView)findViewById(R.id.textView4);
         dodijsktras();
-
-
-
+        soundvalue=getIntent().getStringExtra("sound");
         b0=(Button)findViewById(R.id.b0);
         b1=(Button)findViewById(R.id.b1);
         b2=(Button)findViewById(R.id.b2);
@@ -179,11 +180,14 @@ public class Level4 extends AppCompatActivity {
                 res.setText("");
                 x=0;
                 dodijsktras();
-                actualtimeremaining=15000;
+                if(co!=null){
+                    co.cancel();
+                }
+                actualtimeremaining=12000;
                 starttimer();
             }
         });
-        actualtimeremaining=15000;
+        actualtimeremaining=12000;
         nextlevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -240,6 +244,7 @@ public class Level4 extends AppCompatActivity {
         Button nextlevel = (Button)findViewById(R.id.nextlevel);
         Button check = (Button)findViewById(R.id.check);
         int t=usershortest();
+        disablebuttons();
         if (t!=-1) {
             if (t == dis) {
                 res.setText("You Win");
@@ -260,6 +265,7 @@ public class Level4 extends AppCompatActivity {
 
     private void next() {
         Intent i = new Intent(this,Level5.class);
+        i.putExtra("sound",soundvalue);
         startActivity(i);
     }
 
@@ -312,6 +318,15 @@ public class Level4 extends AppCompatActivity {
         else
             return  -1;
         return x;
+    }
+    public void disablebuttons(){
+        b0.setEnabled(false);
+        b1.setEnabled(false);
+        b2.setEnabled(false);
+        b3.setEnabled(false);
+        b4.setEnabled(false);
+        b5.setEnabled(false);
+        b6.setEnabled(false);
     }
 
 }

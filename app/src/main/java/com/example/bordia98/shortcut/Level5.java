@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class Level5 extends AppCompatActivity {
+    String soundvalue;
     Button b0;
     Button b1;
     Button b2;
@@ -42,7 +43,9 @@ public class Level5 extends AppCompatActivity {
         super.onPause();
         if(co!=null){
             co.cancel();
-            getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
+            if(soundvalue.equals("yes")) {
+                getApplicationContext().stopService(new Intent(this, bglevelsservice.class));
+            }
             timeremaining=tf.getText().toString();
             int val1 = (int)(timeremaining.charAt(0)) - 48;
             int val2 =(int)timeremaining.charAt(1) - 48;
@@ -81,6 +84,7 @@ public class Level5 extends AppCompatActivity {
         Button nextlevel = (Button)findViewById(R.id.nextlevel);
         Button check = (Button)findViewById(R.id.check);
         int t=usershortest();
+        disablebuttons();
         if (t!=-1) {
             if (t == dis) {
                 res.setText("You Win");
@@ -101,13 +105,16 @@ public class Level5 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        getApplicationContext().startService(new Intent(this,bglevelsservice.class));
+        if(soundvalue.equals("yes")){
+            getApplicationContext().startService(new Intent(this,bglevelsservice.class));
+        }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level5);
         dodijsktras();
+        soundvalue=getIntent().getStringExtra("sound");
         tf=(TextView)findViewById(R.id.textView4);
         b0=(Button)findViewById(R.id.b0);
         b1=(Button)findViewById(R.id.b1);
@@ -193,8 +200,11 @@ public class Level5 extends AppCompatActivity {
                 TextView res =(TextView)findViewById(R.id.result);
                 res.setText("");
                 x=0;
-                actualtimeremaining=15000;
+                actualtimeremaining=11000;
                 dodijsktras();
+                if(co!=null){
+                    co.cancel();
+                }
                 starttimer();
             }
         });
@@ -204,7 +214,7 @@ public class Level5 extends AppCompatActivity {
                 next();
             }
         });
-        actualtimeremaining=15000;
+        actualtimeremaining=11000;
         starttimer();
     }
 
@@ -255,8 +265,11 @@ public class Level5 extends AppCompatActivity {
     }
 
     private void next() {
-        getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
-        Intent i = new Intent(this,MainActivity.class);
+        if(soundvalue.equals("yes")){
+            getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
+        }
+        Intent i = new Intent(this,Level6.class);
+        i.putExtra("sound",soundvalue);
         startActivity(i);
     }
     private void b6clicked() {
@@ -338,5 +351,14 @@ public class Level5 extends AppCompatActivity {
             return x;
         }
         return -1;
+    }
+    public void disablebuttons(){
+        b0.setEnabled(false);
+        b1.setEnabled(false);
+        b2.setEnabled(false);
+        b3.setEnabled(false);
+        b4.setEnabled(false);
+        b5.setEnabled(false);
+        b6.setEnabled(false);
     }
 }

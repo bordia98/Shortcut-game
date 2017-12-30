@@ -334,7 +334,7 @@
         android:id="@+id/nextlevel"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Home"
+        android:text="Next Level"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp" />

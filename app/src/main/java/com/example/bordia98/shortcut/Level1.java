@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class Level1 extends AppCompatActivity {
+    String soundvalue;
     Button b0;
     Button b1;
     Button b2;
@@ -54,14 +55,17 @@ public class Level1 extends AppCompatActivity {
 
             Log.d("x",actualtimeremaining+"");
         }
-        getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
-
+        if(soundvalue.equals("yes")) {
+            getApplicationContext().stopService(new Intent(this, bglevelsservice.class));
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        getApplicationContext().startService(new Intent(this,bglevelsservice.class));
+        if(soundvalue.equals("yes")){
+            getApplicationContext().startService(new Intent(this,bglevelsservice.class));
+        }
     }
 
     @Override
@@ -69,7 +73,8 @@ public class Level1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1);
         tf=(TextView)findViewById(R.id.textView4);
-         dodijkstras();
+        soundvalue=getIntent().getStringExtra("sound");
+        dodijkstras();
          b0=(Button)findViewById(R.id.b0);
          b1=(Button)findViewById(R.id.b1);
          b2=(Button)findViewById(R.id.b2);
@@ -146,6 +151,9 @@ public class Level1 extends AppCompatActivity {
                 res.setText("");
                 x=0;
                 dodijkstras();
+                if(co!=null){
+                    co.cancel();
+                }
                 actualtimeremaining=15000;
                 starttimer();
             }
@@ -223,6 +231,7 @@ public class Level1 extends AppCompatActivity {
         Button nextlevel = (Button)findViewById(R.id.nextlevel);
         Button check = (Button)findViewById(R.id.check);
         int t=usershortest();
+        disablebuttons();
         if (t!=-1) {
             if (t == dis) {
                 res.setText("You Win");
@@ -240,6 +249,7 @@ public class Level1 extends AppCompatActivity {
 
     private void next() {
         Intent in = new Intent(this,Level2.class);
+        in.putExtra("sound",soundvalue);
         startActivity(in);
     }
 
@@ -282,4 +292,15 @@ public class Level1 extends AppCompatActivity {
             x=-1;
         return x;
     }
+
+    public void disablebuttons(){
+        b0.setEnabled(false);
+        b1.setEnabled(false);
+        b2.setEnabled(false);
+        b3.setEnabled(false);
+        b4.setEnabled(false);
+        b5.setEnabled(false);
+    }
+
+
 }

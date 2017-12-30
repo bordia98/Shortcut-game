@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class Level3 extends AppCompatActivity {
-
+    String soundvalue;
     Button b0;
     Button b1;
     Button b2;
@@ -39,13 +39,16 @@ public class Level3 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        if(soundvalue.equals("yes")){
         getApplicationContext().startService(new Intent(this,bglevelsservice.class));
+        }
     }
     @Override
     protected void onPause() {
         super.onPause();
-        getApplicationContext().stopService(new Intent(this,bglevelsservice.class));
-
+        if(soundvalue.equals("yes")) {
+            getApplicationContext().stopService(new Intent(this, bglevelsservice.class));
+        }
         if(co!=null){
             co.cancel();
             timeremaining=tf.getText().toString();
@@ -68,6 +71,7 @@ public class Level3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level3);
+        soundvalue=getIntent().getStringExtra("sound");
         tf=(TextView)findViewById(R.id.textView4);
         dodijsktras();
         b0=(Button)findViewById(R.id.b0);
@@ -148,7 +152,10 @@ public class Level3 extends AppCompatActivity {
                 res.setText("");
                 x=0;
                 dodijsktras();
-                actualtimeremaining=15000;
+                if(co!=null){
+                    co.cancel();
+                }
+                actualtimeremaining=13000;
                 starttimer();
             }
         });
@@ -158,7 +165,7 @@ public class Level3 extends AppCompatActivity {
                 next();
             }
         });
-        actualtimeremaining=15000;
+        actualtimeremaining=13000;
         starttimer();
     }
 
@@ -204,6 +211,7 @@ public class Level3 extends AppCompatActivity {
 
     private void next() {
         Intent i = new Intent(this,Level4.class);
+        i.putExtra("sound",soundvalue);
         startActivity(i);
     }
     private void b5clicked() {
@@ -259,6 +267,7 @@ public class Level3 extends AppCompatActivity {
         Button nextlevel = (Button)findViewById(R.id.nextlevel);
         Button check = (Button)findViewById(R.id.check);
         int t=usershortest();
+        disablebuttons();
         if (t!=-1) {
             if (t == dis) {
                 res.setText("You Win");
@@ -289,5 +298,13 @@ public class Level3 extends AppCompatActivity {
         else
             return  -1;
         return x;
+    }
+    public void disablebuttons(){
+        b0.setEnabled(false);
+        b1.setEnabled(false);
+        b2.setEnabled(false);
+        b3.setEnabled(false);
+        b4.setEnabled(false);
+        b5.setEnabled(false);
     }
 }

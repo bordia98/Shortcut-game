@@ -27,7 +27,8 @@
         <activity
             android:name=".Level5"
             android:screenOrientation="portrait" />
-        <activity android:name=".splashscreen"
+        <activity
+            android:name=".splashscreen"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +44,11 @@
         <service
             android:name=".bglevelsservice"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".Level6" />
+        <activity android:name=".Homepage" />
+        <activity android:name=".helppage"></activity>
     </application>
 
 </manifest>

@@ -41,14 +41,24 @@
         android:layout_marginTop="15dp"
         android:layout_below="@+id/level3"
         android:layout_alignStart="@+id/level2" />
+
+    <Button
+        android:id="@+id/level6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/level5"
+        android:layout_below="@+id/level5"
+        android:layout_marginTop="14dp"
+        android:text="Level 6" />
+
     <Button
         android:id="@+id/level5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level 5"
-        android:layout_marginTop="15dp"
+        android:layout_alignStart="@+id/level2"
         android:layout_below="@+id/level4"
-        android:layout_alignStart="@+id/level2" />
+        android:layout_marginTop="15dp"
+        android:text="Level 5" />
 
     <TextView
         android:id="@+id/levels"

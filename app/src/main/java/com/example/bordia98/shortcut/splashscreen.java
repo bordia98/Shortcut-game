@@ -20,7 +20,7 @@ public class splashscreen extends AppCompatActivity {
             public void run() {
                 try{
                     sleep(5000);
-                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent i = new Intent(getApplicationContext(),Homepage.class);
                     startActivity(i);
                     finish();
                 }catch (Exception e){
