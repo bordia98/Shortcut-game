@@ -16,7 +16,7 @@ public class Homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-
+        Button sco = (Button) findViewById(R.id.sc);
         Button play= (Button)findViewById(R.id.playit);
         Button help = (Button)findViewById(R.id.help);
         final Switch t = (Switch) findViewById(R.id.mus);
@@ -24,6 +24,13 @@ public class Homepage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),helppage.class);
+                startActivity(i);
+            }
+        });
+        sco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Scores.class);
                 startActivity(i);
             }
         });

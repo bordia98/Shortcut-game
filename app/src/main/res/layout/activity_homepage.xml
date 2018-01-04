@@ -70,4 +70,13 @@
         android:textStyle="bold"
         android:textSize="25dp"/>
 
+    <Button
+        android:id="@+id/sc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/help"
+        android:layout_below="@+id/help"
+        android:layout_marginTop="19dp"
+        android:text="score" />
+
 </RelativeLayout>

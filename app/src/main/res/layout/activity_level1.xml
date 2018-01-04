@@ -280,15 +280,23 @@
         android:id="@+id/result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="11dp"
-        android:layout_toStartOf="@+id/t1"
+        android:layout_marginTop="8dp"
         android:text=""
-        android:textSize="20dp"
-        android:layout_alignEnd="@+id/nextlevel"
         android:textAlignment="center"
         android:textColor="#800000"
-        android:textStyle="bold"/>
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/resu"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/result"
+        android:layout_alignParentStart="true"
+        android:hint="Enter your Name"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -300,6 +308,15 @@
         android:text="0:00"
         android:textSize="20dp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/bu"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/result"
+        android:layout_centerHorizontal="true"
+        android:text="Button" />
 
 
 </RelativeLayout>
