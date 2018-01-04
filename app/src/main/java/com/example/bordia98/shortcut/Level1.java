@@ -8,17 +8,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
 public class Level1 extends AppCompatActivity {
+    databasehelper myDB;
     String soundvalue;
     Button b0;
     Button b1;
     Button b2;
     Button b3;
     Button b4;
+    Button bu;
+    EditText ed;
     Button b5;
     TextView tf;
     long actualtimeremaining;
@@ -72,16 +77,20 @@ public class Level1 extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1);
+        myDB = new databasehelper(this);
         tf=(TextView)findViewById(R.id.textView4);
         soundvalue=getIntent().getStringExtra("sound");
         dodijkstras();
+        bu = (Button) findViewById(R.id.bu);
+        bu.setVisibility(View.INVISIBLE);
+        ed = (EditText) findViewById(R.id.resu);
          b0=(Button)findViewById(R.id.b0);
          b1=(Button)findViewById(R.id.b1);
          b2=(Button)findViewById(R.id.b2);
          b3=(Button)findViewById(R.id.b3);
          b4=(Button)findViewById(R.id.b4);
          b5=(Button)findViewById(R.id.b5);
-
+ed.setVisibility(View.INVISIBLE);
          b0.setTranslationX(1000f);
         b1.setTranslationX(-1000f);
         b2.setTranslationX(1000f);
@@ -115,6 +124,8 @@ public class Level1 extends AppCompatActivity {
                 b2clicked();
             }
         });
+         final String name = ed.getText().toString();
+         final String timee = tf.getText().toString();
          b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +144,19 @@ public class Level1 extends AppCompatActivity {
                 b5clicked();
             }
         });
-
+        bu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Boolean resull = myDB.insertData(name,timee);
+                if(resull == true){
+                    Toast.makeText(getApplicationContext(),"Time Inserted",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Time Insertion Failed",Toast.LENGTH_SHORT).show();
+                }
+                ed.setVisibility(View.INVISIBLE);
+                bu.setVisibility(View.INVISIBLE);
+            }
+        });
         final Button nextlevel=(Button)findViewById(R.id.nextlevel);
         final Button check=(Button)findViewById(R.id.check);
         nextlevel.setEnabled(false);
@@ -258,6 +281,9 @@ public class Level1 extends AppCompatActivity {
         if (t!=-1) {
             if (t == dis) {
                 res.setText("You Win");
+                ed.setVisibility(View.VISIBLE);
+                bu.setVisibility(View.VISIBLE);
+
                 nextlevel.setEnabled(true);
             } else if (t != dis) {
                 res.setText("You Lose");
@@ -269,6 +295,7 @@ public class Level1 extends AppCompatActivity {
         check.setEnabled(false);
 
     }
+
 
     private void next() {
         Intent in = new Intent(this,Level2.class);

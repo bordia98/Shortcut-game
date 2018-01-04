@@ -48,7 +48,8 @@
 
         <activity android:name=".Level6" />
         <activity android:name=".Homepage" />
-        <activity android:name=".helppage"></activity>
+        <activity android:name=".helppage" />
+        <activity android:name=".Scores"></activity>
     </application>
 
 </manifest>

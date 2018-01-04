@@ -32,7 +32,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     compile 'com.android.support:gridlayout-v7:25.3.1'
     compile "com.hanks:htextview-base:$htextview_version"
     compile "com.hanks:htextview-scale:$htextview_version"
@@ -42,4 +41,5 @@ dependencies {
     compile 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
 
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
