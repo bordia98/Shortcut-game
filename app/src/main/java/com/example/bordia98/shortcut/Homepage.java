@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.ToggleButton;
 
 public class Homepage extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class Homepage extends AppCompatActivity {
 
         Button play= (Button)findViewById(R.id.playit);
         Button help = (Button)findViewById(R.id.help);
+        final Switch t = (Switch) findViewById(R.id.mus);
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +27,6 @@ public class Homepage extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        final ToggleButton t = (ToggleButton)findViewById(R.id.toggleButton);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

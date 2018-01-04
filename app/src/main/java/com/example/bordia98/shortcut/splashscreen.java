@@ -1,10 +1,14 @@
 package com.example.bordia98.shortcut;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 public class splashscreen extends AppCompatActivity {
 
@@ -14,21 +18,18 @@ public class splashscreen extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splashscreenoriginal);
+        ImageView Image = (ImageView) findViewById(R.id.imageView2);
 
-        Thread th = new Thread(){
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.together);
+        Image.startAnimation(animation);
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                try{
-                    sleep(5000);
-                    Intent i = new Intent(getApplicationContext(),Homepage.class);
-                    startActivity(i);
-                    finish();
-                }catch (Exception e){
-                    System.out.print(e);
-                }
+                Intent intent=new Intent(getApplicationContext(),Homepage.class);
+                startActivity(intent);
+                finish();
             }
-        };
+        },4000);
 
-        th.start();
     }
 }

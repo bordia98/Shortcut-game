@@ -80,6 +80,19 @@ public class Level3 extends AppCompatActivity {
         b3=(Button)findViewById(R.id.b3);
         b4=(Button)findViewById(R.id.b4);
         b5=(Button)findViewById(R.id.b5);
+        b0.setTranslationX(1000f);
+        b1.setTranslationX(-1000f);
+        b2.setTranslationX(1000f);
+        b3.setTranslationX(-1000f);
+        b4.setTranslationX(1000f);
+        b5.setTranslationX(-1000f);
+
+        b0.animate().translationX(0f).setDuration(300);
+        b1.animate().translationX(0f).setDuration(300);
+        b2.animate().translationX(0f).setDuration(300);
+        b3.animate().translationX(0f).setDuration(300);
+        b4.animate().translationX(0f).setDuration(300);
+        b5.animate().translationX(0f).setDuration(300);
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
