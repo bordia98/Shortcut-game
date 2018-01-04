@@ -1,6 +1,7 @@
 package com.example.bordia98.shortcut;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,21 @@ public class MainActivity extends AppCompatActivity {
         Button level4 = (Button)findViewById(R.id.level4);
         Button level5 = (Button)findViewById(R.id.level5);
         Button level6 = (Button)findViewById(R.id.level6);
+        level1.setTranslationX(-1000f);
+        level2.setTranslationX(1000f);
+        level3.setTranslationX(-1000f);
+        level4.setTranslationX(1000f);
+        level5.setTranslationX(-1000f);
+        level6.setTranslationX(1000f);
+
+        level1.animate().translationX(0f).setDuration(300);
+        level2.animate().translationX(0f).setDuration(600);
+        level3.animate().translationX(0f).setDuration(900);
+        level4.animate().translationX(0f).setDuration(1200);
+        level5.animate().translationX(0f).setDuration(1500);
+        level6.animate().translationX(0f).setDuration(1800);
+
+
         level1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

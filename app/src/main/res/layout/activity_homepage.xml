@@ -28,41 +28,34 @@
         android:layout_marginTop="250dp"
         android:id="@+id/linearLayout7">
 
-        <TextView
-            android:id="@+id/textView5"
+
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:id="@+id/mus"
+            android:layout_weight="1"
             android:text="Do You want Music??"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000000"
             android:textSize="25dp"
             android:textStyle="bold" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/roundbutton"
-        android:text="Music"
-        android:textSize="25dp"
-        android:checked="true"
-        android:layout_marginLeft="20dp"/>
-
 
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+
+    <com.hanks.htextview.rainbow.RainbowTextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:layout_marginTop="38dp"
-        android:textSize="35dp"
+        android:textSize="55dp"
         android:textColor="#570838"
         android:textStyle="bold"
-        android:text="SHORT-CUT" />
+        android:text="Short-Cut"
+        app:colorSpace="150dp"
+        app:colorSpeed="4dp"/>
 
     <Button
         android:id="@+id/help"
