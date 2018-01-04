@@ -124,8 +124,6 @@ ed.setVisibility(View.INVISIBLE);
                 b2clicked();
             }
         });
-         final String name = ed.getText().toString();
-         final String timee = tf.getText().toString();
          b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,6 +145,9 @@ ed.setVisibility(View.INVISIBLE);
         bu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final String name = ed.getText().toString();
+                final String timee = tf.getText().toString();
                 Boolean resull = myDB.insertData(name,timee);
                 if(resull == true){
                     Toast.makeText(getApplicationContext(),"Time Inserted",Toast.LENGTH_SHORT).show();
