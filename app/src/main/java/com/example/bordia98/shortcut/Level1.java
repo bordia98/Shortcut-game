@@ -42,6 +42,9 @@ public class Level1 extends AppCompatActivity {
         super.onPause();
         if(co!=null){
             co.cancel();
+            if(soundvalue.equals("yes")) {
+                getApplicationContext().stopService(new Intent(this, bglevelsservice.class));
+            }
             timeremaining=tf.getText().toString();
             int val1 = (int)(timeremaining.charAt(0)) - 48;
             int val2 =(int)timeremaining.charAt(1) - 48;
@@ -177,7 +180,7 @@ public class Level1 extends AppCompatActivity {
                 if(co!=null){
                     co.cancel();
                 }
-                actualtimeremaining=15000;
+                actualtimeremaining=8000;
                 starttimer();
             }
         });
@@ -188,7 +191,7 @@ public class Level1 extends AppCompatActivity {
                 next();
             }
         });
-        actualtimeremaining=15000;
+        actualtimeremaining=8000;
         starttimer();
 
     }

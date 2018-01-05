@@ -64,6 +64,9 @@ public class Level2 extends AppCompatActivity {
 
             Log.d("x",actualtimeremaining+"");
         }
+        if(soundvalue.equals("yes")) {
+            getApplicationContext().stopService(new Intent(this, bglevelsservice.class));
+        }
     }
 
     @Override
@@ -166,7 +169,7 @@ public class Level2 extends AppCompatActivity {
                 if(co!=null){
                     co.cancel();
                 }
-                actualtimeremaining=14000;
+                actualtimeremaining=7000;
                 starttimer();
             }
         });
@@ -177,7 +180,7 @@ public class Level2 extends AppCompatActivity {
                 next();
             }
         });
-        actualtimeremaining=14000;
+        actualtimeremaining=7000;
         starttimer();
     }
 

@@ -64,6 +64,9 @@ public class Level3 extends AppCompatActivity {
 
             Log.d("x",actualtimeremaining+"");
         }
+        if(soundvalue.equals("yes")) {
+            getApplicationContext().stopService(new Intent(this, bglevelsservice.class));
+        }
     }
 
 
@@ -168,7 +171,7 @@ public class Level3 extends AppCompatActivity {
                 if(co!=null){
                     co.cancel();
                 }
-                actualtimeremaining=13000;
+                actualtimeremaining=6000;
                 starttimer();
             }
         });
@@ -178,7 +181,7 @@ public class Level3 extends AppCompatActivity {
                 next();
             }
         });
-        actualtimeremaining=13000;
+        actualtimeremaining=6000;
         starttimer();
     }
 

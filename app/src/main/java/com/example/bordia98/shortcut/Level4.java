@@ -65,6 +65,9 @@ public class Level4 extends AppCompatActivity {
 
             Log.d("x",actualtimeremaining+"");
         }
+        if(soundvalue.equals("yes")) {
+            getApplicationContext().stopService(new Intent(this, bglevelsservice.class));
+        }
 
     }
 
@@ -200,11 +203,11 @@ public class Level4 extends AppCompatActivity {
                 if(co!=null){
                     co.cancel();
                 }
-                actualtimeremaining=12000;
+                actualtimeremaining=5000;
                 starttimer();
             }
         });
-        actualtimeremaining=12000;
+        actualtimeremaining=5000;
         nextlevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

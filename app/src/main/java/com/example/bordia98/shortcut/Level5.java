@@ -59,6 +59,9 @@ public class Level5 extends AppCompatActivity {
 
             Log.d("x",actualtimeremaining+"");
         }
+        if(soundvalue.equals("yes")) {
+            getApplicationContext().stopService(new Intent(this, bglevelsservice.class));
+        }
     }
 
     private void starttimer() {
@@ -216,7 +219,7 @@ public class Level5 extends AppCompatActivity {
                 TextView res =(TextView)findViewById(R.id.result);
                 res.setText("");
                 x=0;
-                actualtimeremaining=11000;
+                actualtimeremaining=4000;
                 dodijsktras();
                 if(co!=null){
                     co.cancel();
@@ -230,7 +233,7 @@ public class Level5 extends AppCompatActivity {
                 next();
             }
         });
-        actualtimeremaining=11000;
+        actualtimeremaining=4000;
         starttimer();
     }
 

@@ -46,9 +46,12 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Level6" />
-        <activity android:name=".Homepage" />
-        <activity android:name=".helppage"></activity>
+        <activity android:name=".Level6" 
+ 	android:screenOrientation="portrait"/>
+        <activity android:name=".Homepage" 
+ 	android:screenOrientation="portrait"/>
+        <activity android:name=".helppage"
+ 	android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
